@@ -11,7 +11,7 @@ import SwiftUI
 struct ChampionSwiftApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
