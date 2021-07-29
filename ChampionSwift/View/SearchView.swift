@@ -26,10 +26,13 @@ struct SearchView: View {
                     
                 }.listStyle(InsetListStyle())
                 
+
                 .navigationBarTitle(Text("Search"))
             }
             
         }
+
+
     }
 }
 
