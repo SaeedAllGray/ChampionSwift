@@ -15,8 +15,12 @@ struct SearchView: View {
                 Section {
                     Text("Hello World")
                 }
-            }.navigationBarTitle(Text("Search"))
-        }
+            }
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text("Search"))
+        }.onAppear(perform: {
+            print(Team.moc())
+        })
     }
 }
 
