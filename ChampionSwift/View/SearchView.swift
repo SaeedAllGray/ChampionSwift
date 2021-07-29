@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State private var searchTerm: String = ""
     var body: some View {
         NavigationView{
-            Form {
+            VStack{
+                HStack{
+                    Image(systemName: "magnifyingglass")
+                    TextField("Enter team name", text: $searchTerm)
+                    
+                }.padding(8).background(Color(.systemGray5))
+                .cornerRadius(10).padding(.horizontal, 15)
+                List {
+                    
+                    
+                    TeamCellView()
+                    TeamCellView()
+                    
+                }.listStyle(InsetListStyle())
                 
-                Section {
-                    Text("Hello World")
-                }
-            }.navigationBarTitle(Text("Search"))
+                .navigationBarTitle(Text("Search"))
+            }
+            
         }
     }
 }
