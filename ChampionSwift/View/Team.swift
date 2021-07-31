@@ -15,7 +15,7 @@ struct Team: Codable, CustomStringConvertible {
     
     let id: Int
     let name: String
-    let country: String
+    let country: String?
     let founded: Int?
     let national: Bool
     let logoUrl: URL
@@ -34,7 +34,7 @@ struct Team: Codable, CustomStringConvertible {
 
         self.id = try valueContainer.decode(Int.self, forKey: .id)
         self.name = try valueContainer.decode(String.self, forKey: .name)
-        self.country = try valueContainer.decode(String.self, forKey: .country)
+        self.country = try? valueContainer.decode(String.self, forKey: .country)
         self.founded = try? valueContainer.decode(Int.self, forKey: .founded)
         self.national = try valueContainer.decode(Bool.self, forKey: .national)
         self.logoUrl = try valueContainer.decode(URL.self, forKey: .logoUrl)
