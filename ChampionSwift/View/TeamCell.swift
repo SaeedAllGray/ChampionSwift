@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct TeamCell: View {
-    var team: Team
+    @EnvironmentObject var favoriteTeams: FavoriteTeams
     
+    var team: Team
+   
     
     var body: some View {
         HStack {
@@ -23,6 +25,16 @@ struct TeamCell: View {
                 Text(team.name).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 Text(team.country ?? "N/A")
             }
+            Spacer()
+            Button(action: {
+                if favoriteTeams.contains(team) {
+                    favoriteTeams.remove(team)
+                } else {
+                    favoriteTeams.add(team)
+                }
+            }, label: {
+                Image(systemName: favoriteTeams.contains(team) ? "star.fill" : "star")
+            }).buttonStyle(BorderlessButtonStyle())
         }
     }
 }

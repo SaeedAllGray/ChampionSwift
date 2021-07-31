@@ -8,7 +8,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchTerm: String = ""
-    
+    @ObservedObject var favoriteTeams = FavoriteTeams()
     @ObservedObject var teamListModelView = SearchTeamModelView()
     
     var body: some View {
@@ -26,17 +26,12 @@ struct SearchView: View {
                 
                 
                 if teamListModelView.loadingState == .loaded {
-                    List {
-                        
-                        
-                        
-                        
-                        ForEach(teamListModelView.teamList, id: \.id) { team in
-                            TeamCell(team: team)
-                        }
-                        
-                        
-                        
+                    List(teamListModelView.teamList, id: \.id) { team in
+                        NavigationLink(
+                            destination: TeamInfoView(team: team),
+                            label: {
+                                TeamCell(team: team)
+                            })
                     }
                     
                     .listStyle(InsetListStyle())
@@ -47,13 +42,15 @@ struct SearchView: View {
                     Spacer()
                     ProgressView()
                     Spacer()
-                           
+                    
                     
                 }
                 Spacer()
                 
                 
-            }.navigationBarTitle(Text(verbatim: "Search"))
+            }
+            .navigationBarTitle(Text(verbatim: "Search"))
+            .environmentObject(favoriteTeams)
             
         }
         
