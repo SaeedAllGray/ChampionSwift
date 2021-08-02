@@ -8,16 +8,32 @@
 import SwiftUI
 
 struct TeamInfoView: View {
+    @ObservedObject var teamInfoModelView = TeamInfoModelView()
+    
     var team: Team
+    
     var body: some View {
         
-            VStack {
-                Image.contents(of: team.logoUrl)
+        VStack {
+            if teamInfoModelView.loadingState == .loaded {
+                List(teamInfoModelView.leagueList, id: \.id) { league in
+                    LeagueCell(league: league)
+                    
+                }
+                .listStyle(InsetGroupedListStyle())
+            } else {
+                
+                Spacer()
+                ProgressView()
+                Spacer()
+                
+                
             }
-            .navigationTitle(team.name)
-            .navigationBarItems(trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                Image(systemName: "star")
-            }))
+        }
+        .navigationBarTitle(Text(verbatim: team.name))
+        .onAppear(perform: {
+            teamInfoModelView.setLeagueList(of: team)
+        })
     }
 }
 

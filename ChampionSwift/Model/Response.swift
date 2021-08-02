@@ -9,14 +9,15 @@ import Foundation
 
 
 
-struct Response: Codable {
-    var response: [Result]
+struct Response<Type: Codable>: Codable {
+    var response: [Result<Type>]
 
     enum CodingKeys: CodingKey {
         case response
     }
     init(from decoder: Decoder) throws {
+        
         let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.response = try valueContainer.decode([Result].self, forKey: .response)
+        self.response = try valueContainer.decode([Result<Type>].self, forKey: .response)
     }
 }
