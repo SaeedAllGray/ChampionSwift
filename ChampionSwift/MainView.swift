@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
+    
     var body: some View {
-        TabView {
+        TabView() {
             SearchView()
+                .tag(0)
                 .tabItem {
                     Label("search", systemImage: "magnifyingglass")
                 }
-            
+            Text("test")
+                .tag(1)
+                .tabItem {
+                    Label("other", systemImage: "hammer")
+                }
             
         }
     }

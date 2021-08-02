@@ -8,6 +8,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchTerm: String = ""
+    @State var isSearching = false
     @ObservedObject var favoriteTeams = FavoriteTeams()
     @ObservedObject var teamListModelView = SearchTeamModelView()
     
@@ -15,33 +16,62 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Image(systemName: "magnifyingglass")
-                    TextField("Enter team name", text: $searchTerm, onCommit:  {
-                        teamListModelView.search(team: searchTerm)
-                    })
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        TextField("Enter team name", text: $searchTerm, onCommit:  {
+                            teamListModelView.search(team: searchTerm)
+                        })
+                        
+                    }.onTapGesture {
+                        isSearching = true
+                    }
+                    .padding(8)
+                    .background(Color(.systemGray5))
+                    .cornerRadius(10)
+                    .padding(.horizontal, 15)
+                    .transition(.move(edge: .trailing))
+                    .animation(.spring())
                     
-                }
-                .padding(8).background(Color(.systemGray5))
-                .cornerRadius(10).padding(.horizontal, 15)
+                    if isSearching {
+                        Button(action: {
+                            isSearching = false
+                            searchTerm = ""
+                            //dismisses the keyboard
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }, label: {
+                            Text("Cancel")
+                                .padding(.trailing)
+                                
+                        })
+                        
+                        .transition(.move(edge: .trailing))
+                        .animation(.spring())
+                    }
+                }.padding(.bottom, 4)
+                
                 
                 
                 if teamListModelView.loadingState == .loaded {
-                    List(teamListModelView.teamList, id: \.id) { team in
-                        NavigationLink(
-                            destination: TeamInfoView(team: team),
-                            label: {
-                                TeamCell(team: team)
-                            })
+                    if teamListModelView.teamList.isEmpty {
+                        Text("No teams found for \"\(searchTerm)\"").frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        List(teamListModelView.teamList, id: \.id) { team in
+                            NavigationLink(
+                                destination: TeamInfoView(team: team),
+                                label: {
+                                    TeamCell(team: team)
+                                })
+                        }
+                        .listStyle(InsetListStyle())
                     }
-                    
-                    .listStyle(InsetListStyle())
                 } else if teamListModelView.loadingState == .notLoaded {
                     Text("Hello navid")
                 } else {
                     
-                    Spacer()
+                    
                     ProgressView()
-                    Spacer()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
                     
                     
                 }
