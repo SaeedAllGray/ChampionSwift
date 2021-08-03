@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct TeamInfoView: View {
+    @ObservedObject var teamInfoModelView = TeamInfoModelView()
+    
     var team: Team
+    
     var body: some View {
         
         VStack {
+
             Image.contents(of: team.logoUrl).padding().background(Color(.systemGray4)).clipShape(RoundedRectangle(cornerRadius: 10))
             HStack {
                 HStack {

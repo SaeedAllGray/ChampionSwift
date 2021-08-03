@@ -8,18 +8,25 @@
 import Foundation
 
 
-struct Result: Codable {
-    var result: Team
+struct Result<Type: Codable>: Codable {
+    var result: Type
     
-
-    enum TeamsKey: String, CodingKey {
-        case result = "team"
+    enum CodingKeys: String, CodingKey {
+        var rawValue: String {
+            get {
+                return String(describing: Type.self).lowercased()
+            }
+        }
+        
+        case result
     }
-
+    
    
     init(from decoder: Decoder) throws {
-        let valueContainer = try decoder.container(keyedBy: TeamsKey.self)
-        self.result = try valueContainer.decode(Team.self, forKey: .result)
+        
+        let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.result = try valueContainer.decode(Type.self, forKey: .result)
         
     }
+    
 }
