@@ -57,8 +57,10 @@ struct SearchView: View {
                     } else {
                         List(teamListModelView.teamList, id: \.id) { team in
                             
-                                
-                                    TeamCell(team: team)
+                            NavigationLink(destination: TeamInfoView(team: team)){
+                                TeamCell(team: team)
+                            }
+                                    
                                
                         }
                         .listStyle(InsetListStyle())
