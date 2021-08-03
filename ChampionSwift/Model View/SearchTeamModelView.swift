@@ -42,7 +42,7 @@ final class SearchTeamModelView: ObservableObject {
             let jsonDecoder = JSONDecoder()
             
             do {
-                let teamsInfo = try jsonDecoder.decode(Response.self, from: data)
+                let teamsInfo = try jsonDecoder.decode(Response<Team>.self, from: data)
                 DispatchQueue.main.async {
                     for result in teamsInfo.response {
                         

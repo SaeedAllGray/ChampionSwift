@@ -56,11 +56,10 @@ struct SearchView: View {
                         Text("No teams found for \"\(searchTerm)\"").frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         List(teamListModelView.teamList, id: \.id) { team in
-                            NavigationLink(
-                                destination: TeamInfoView(team: team),
-                                label: {
+                            
+                                
                                     TeamCell(team: team)
-                                })
+                               
                         }
                         .listStyle(InsetListStyle())
                     }
