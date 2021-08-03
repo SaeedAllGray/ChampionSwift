@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct League: Codable, CustomStringConvertible {
+struct League: Codable, CustomStringConvertible, Identifiable {
     var description: String {
         return "\(name)"
     }
@@ -16,20 +16,20 @@ struct League: Codable, CustomStringConvertible {
     let id: Int
     let name: String
     let type: String
-    let logo: URL
+    let logoUrl: URL
     
-    enum CodingKeys: CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case type
-        case logo
+        case logoUrl = "logo"
     }
     
     init(from decoder: Decoder) throws {
         let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
 
         self.id = try valueContainer.decode(Int.self, forKey: .id)
-        self.logo = try valueContainer.decode(URL.self, forKey: .logo)
+        self.logoUrl = try valueContainer.decode(URL.self, forKey: .logoUrl)
         self.name = try valueContainer.decode(String.self, forKey: .name)
         self.type = try valueContainer.decode(String.self, forKey: .type)
     }
@@ -46,6 +46,7 @@ extension League {
     """
     
     static func moc() -> League {
+        let jsonDecoder = JSONDecoder()
         let data = Data(dataStr.utf8)
         let premireLeague = try! jsonDecoder.decode(League.self, from: data)
         return premireLeague

@@ -12,7 +12,7 @@ struct LeagueCell: View {
     
     var body: some View {
         HStack {
-            Image.contents(of: league.logo)
+            Image.contents(of: league.logoUrl)
                 .resizable().scaledToFit()
                 .frame(width: 50, height: 50, alignment: .center)
                 

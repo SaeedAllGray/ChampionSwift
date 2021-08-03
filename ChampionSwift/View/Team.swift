@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Team: Codable, CustomStringConvertible {
+struct Team: Codable, CustomStringConvertible, Identifiable{
     var description: String {
         return "\(name)"
     }
@@ -57,6 +57,7 @@ extension Team {
     
     static func moc() -> Team {
         let data = Data(dataStr.utf8)
+        let jsonDecoder = JSONDecoder()
         let manutd = try! jsonDecoder.decode(Team.self, from: data)
         return manutd
     }
