@@ -15,25 +15,37 @@ struct TeamInfoView: View {
     var body: some View {
         
         VStack {
-            if teamInfoModelView.loadingState == .loaded {
-                List(teamInfoModelView.leagueList, id: \.id) { league in
-                    LeagueCell(league: league)
-                    
+
+            Image.contents(of: team.logoUrl).padding().background(Color(.systemGray4)).clipShape(RoundedRectangle(cornerRadius: 10))
+            HStack {
+                HStack {
+                    Text("Founded in")
+                    if let founded = team.founded {
+                        Text(String(founded))
+                    } else {
+                        Text("N/A")
+                    }
                 }
-                .listStyle(InsetGroupedListStyle())
-            } else {
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color(.systemGray4))
+                .cornerRadius(10)
                 
-                Spacer()
-                ProgressView()
-                Spacer()
-                
-                
+                if let country = team.country {
+                    Text("\(country)")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color(.systemGray4))
+                        .cornerRadius(10)
+                }
             }
+            Spacer()
         }
-        .navigationBarTitle(Text(verbatim: team.name))
-        .onAppear(perform: {
-            teamInfoModelView.setLeagueList(of: team)
-        })
+        .padding()
+        .navigationTitle(team.name)
+        .navigationBarItems(trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Image(systemName: "star")
+        }))
     }
 }
 

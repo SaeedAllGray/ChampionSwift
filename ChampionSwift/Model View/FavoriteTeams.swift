@@ -13,6 +13,12 @@ class FavoriteTeams: ObservableObject {
     private let saveKey = "favoriteTeams"
     init() {
 //        teams = defaults.object(forKey: "favoriteTeams") as? Set<Int> ?? []
+//        if let data = defaults.data(forKey: saveKey){
+//            if let decoded = try? JSONDecoder().decode([FavoriteTeams].self, from: data){
+//                self.teams = decoded
+//                return
+//            }
+//        }
         teams = []
     }
     
@@ -33,7 +39,7 @@ class FavoriteTeams: ObservableObject {
     }
 
     func save() {
-//        defaults.set(teams, forKey: "favoriteTeams")
+//        defaults.set(teams.id, forKey: "favoriteTeams")
     }
     
 }
