@@ -11,7 +11,7 @@ struct SearchView: View {
     @State var isSearching = false
     @ObservedObject var favoriteTeams = FavoriteTeams()
     @ObservedObject var teamListModelView = SearchTeamModelView()
-    
+     
     var body: some View {
         NavigationView {
             VStack {
