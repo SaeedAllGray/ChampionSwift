@@ -4,29 +4,32 @@
 //
 //  Created by navid on 8/3/21.
 //
-
 import SwiftUI
 
 struct PlayerCellView: View {
+    var player: Player
     var body: some View {
         VStack {
-            Image.contents(of: Team.moc().logoUrl)
+            Image.contents(of: player.photoUrl)
                 .resizable()
+                .frame(maxWidth: 100, maxHeight: 100)
                 .scaledToFit()
                 .padding(10)
-                .background(Color(red: 14/255, green: 23/255, blue: 77/255))
-                .clipShape(Circle())
-                
-            Text("Marcello Jr. Locako")
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                .cornerRadius(10)
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2))
+            
+            Text(player.name)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .minimumScaleFactor(0.8)
-        }.frame(maxWidth: 100, maxHeight: 140)
+        }.frame(width: 100, height: 140)
     }
 }
 
 struct PlayerCellView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerCellView()
+        PlayerCellView(player: Player.moc())
     }
 }

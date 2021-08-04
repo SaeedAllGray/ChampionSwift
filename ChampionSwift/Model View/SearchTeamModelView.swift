@@ -17,7 +17,7 @@ final class SearchTeamModelView: ObservableObject {
     
     
     func search(team name: String) {
-    
+        teamList.removeAll()
         self.loadingState = .loading
        
         let query = ["search": name]
@@ -27,7 +27,7 @@ final class SearchTeamModelView: ObservableObject {
         
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-
+            print(request)
             guard let data = data else { return }
 
             let jsonDecoder = JSONDecoder()

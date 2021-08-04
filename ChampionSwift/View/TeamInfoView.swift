@@ -4,11 +4,13 @@
 //
 //  Created by navid on 8/3/21.
 //
-
 import SwiftUI
 
 struct TeamInfoView: View {
+    @ObservedObject var teamPlayersModelView = TeamPlayersModelView()
+    
     var team: Team
+    
     var body: some View {
         
         VStack (alignment: .center){
@@ -38,8 +40,8 @@ struct TeamInfoView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 Section(header: Text("Recent Matches")) {
-                    ResultCallView()
-                    ResultCallView()
+                    ResultCellView()
+                    ResultCellView()
                 }
                 
                 Section (header: Text("Standing")){
@@ -50,14 +52,15 @@ struct TeamInfoView: View {
                 Section (header:Text("Players")) {
                     ScrollView(.horizontal) {
                         HStack( spacing: 10) {
-                            PlayerCellView()
-                            PlayerCellView()
-                            PlayerCellView()
-                            PlayerCellView()
+                            ForEach(teamPlayersModelView.playerList) { player in
+                                PlayerCellView(player: player)
+                            }
                         }
                         .padding()
                         
-                    }
+                    }.onAppear(perform: {
+                        teamPlayersModelView.setPlayers(of: team)
+                    })
                     
                     .padding(.zero)
                     .frame(height: 200)

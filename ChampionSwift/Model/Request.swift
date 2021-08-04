@@ -17,6 +17,7 @@ class Request {
         myURL.appendPathComponent(path)
         myURL = myURL.withQueries(query)!
         
+        
         var request = URLRequest(url: myURL ,timeoutInterval: Double.infinity)
         request.addValue("59bacee5d5b48ef6fa48a0e7df1be111", forHTTPHeaderField: "x-rapidapi-key")
         request.addValue("v3.football.api-sports.io", forHTTPHeaderField: "x-rapidapi-host")
