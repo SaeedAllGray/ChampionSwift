@@ -28,6 +28,7 @@ final class TeamPlayersModelView: ObservableObject {
             let jsonDecoder = JSONDecoder()
             
             do {
+                
                 let teamsInfo = try jsonDecoder.decode(Response<Player>.self, from: data)
                 DispatchQueue.main.async {
                     for result in teamsInfo.response {
