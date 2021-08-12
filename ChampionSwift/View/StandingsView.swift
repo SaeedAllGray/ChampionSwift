@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StandingsView: View {
-    var teamList: [Team] = [Team.moc(),Team.moc(),Team.moc(),Team.moc(),Team.moc()]
+    @ObservedObject var standingsModelView = StandingsModelView()
     var league: League
     var body: some View {
         VStack {
@@ -19,24 +19,31 @@ struct StandingsView: View {
                 .scaledToFit()
                 .frame(width: 80, height: 80, alignment: .center)
                 .padding()
-                
-//                Text(league.name)
-                
+
+            }
+            if standingsModelView.loadingState == .loaded {
+            List {
+                ForEach(standingsModelView.standings, id: \.self) { standings in
+                    Section {
+                        ForEach(standings) { standing in
+                            StandingRow(standing: standing)
+                        }
+                    }
+                }
+            
+            
+            }
+                .listStyle(PlainListStyle())
+            } else {
+                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             
             
-            
-            
-            List(teamList) { team in
-                StandingRow(team: team)
-                  
-                   
-                    
-            
-            }
-            
-//            .listStyle(PlainListStyle())
-        }
+//            .listStyle(GroupedListStyle())
+        }.onAppear(perform: {
+            standingsModelView.setStandings(league: league)
+        })
         
     
         

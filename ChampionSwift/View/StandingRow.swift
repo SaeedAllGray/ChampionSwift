@@ -8,21 +8,37 @@
 import SwiftUI
 
 struct StandingRow: View {
-    var team: Team
+    var standing: Standing
     var body: some View {
         HStack {
             
-//            ZStack {Color(.green).ignoresSafeArea()}
-//                .frame(width: 5, height: 30)
-            Text("1")
-            Image.contents(of: team.logoUrl)
+            ZStack {
+                switch standing.status {
+                case .promotion:
+                    Color(.green).ignoresSafeArea()
+                case .playoff:
+                    Color(.orange).ignoresSafeArea()
+                case .relegation:
+                    Color(.red).ignoresSafeArea()
+                default:
+                    Color(.clear).ignoresSafeArea()
+                }
+                
+            }
+            .frame(width: 5, height: 30)
+            
+            
+            Text("\(standing.rank)")
+            Image.contents(of: standing.team.logoUrl)
                 .resizable()
                 .frame(width: 30, height: 30)
                 
-            Text(team.name)
+            Text(standing.team.name)
                 
             Spacer()
-            Text("0")
+            Text("\(standing.points)")
+                
+            
                 
         }
        
@@ -31,6 +47,6 @@ struct StandingRow: View {
 
 struct StandingRow_Previews: PreviewProvider {
     static var previews: some View {
-        StandingRow(team: Team.moc())
+        StandingRow(standing: Standing.moc())
     }
 }

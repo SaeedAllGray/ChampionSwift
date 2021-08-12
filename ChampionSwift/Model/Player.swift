@@ -47,7 +47,7 @@ extension Player {
     "photo": "https://media.api-sports.io/football/players/891.png"
     }
     """
-    
+
     static func moc() -> Player {
         let data = Data(dataStr.utf8)
         let jsonDecoder = JSONDecoder()

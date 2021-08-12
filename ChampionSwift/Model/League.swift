@@ -13,16 +13,21 @@ struct League: Codable, CustomStringConvertible, Identifiable {
         return "\(name)"
     }
     
-    let id: Int
-    let name: String
-    let type: String
-    let logoUrl: URL
+    var id: Int
+    var name: String
+    var type: String?
+    var logoUrl: URL
+    
+    var standings: [[Standing]]?
+    
+    
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case type
         case logoUrl = "logo"
+        case standings
     }
     
     init(from decoder: Decoder) throws {
@@ -31,14 +36,15 @@ struct League: Codable, CustomStringConvertible, Identifiable {
         self.id = try valueContainer.decode(Int.self, forKey: .id)
         self.logoUrl = try valueContainer.decode(URL.self, forKey: .logoUrl)
         self.name = try valueContainer.decode(String.self, forKey: .name)
-        self.type = try valueContainer.decode(String.self, forKey: .type)
+        self.type = try? valueContainer.decode(String.self, forKey: .type)
+        self.standings = try? valueContainer.decode([[Standing]].self, forKey: .standings)
     }
 }
 
 extension League {
     static var dataStr = """
     {
-    "id": 39,
+    "id": 2,
     "name": "Premier League",
     "type": "League",
     "logo": "https://media.api-sports.io/football/leagues/39.png"
