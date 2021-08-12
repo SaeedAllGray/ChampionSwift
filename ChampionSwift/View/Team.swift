@@ -17,7 +17,7 @@ struct Team: Codable, CustomStringConvertible, Identifiable{
     let name: String
     let country: String?
     let founded: Int?
-    let national: Bool
+    let national: Bool?
     let logoUrl: URL
     
     enum CodingKeys: String, CodingKey {
@@ -36,7 +36,7 @@ struct Team: Codable, CustomStringConvertible, Identifiable{
         self.name = try valueContainer.decode(String.self, forKey: .name)
         self.country = try? valueContainer.decode(String.self, forKey: .country)
         self.founded = try? valueContainer.decode(Int.self, forKey: .founded)
-        self.national = try valueContainer.decode(Bool.self, forKey: .national)
+        self.national = try? valueContainer.decode(Bool.self, forKey: .national)
         self.logoUrl = try valueContainer.decode(URL.self, forKey: .logoUrl)
     }
 

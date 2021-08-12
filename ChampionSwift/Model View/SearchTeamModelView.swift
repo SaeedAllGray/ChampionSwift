@@ -38,9 +38,12 @@ final class SearchTeamModelView: ObservableObject {
                     for result in teamsInfo.response {
 
                         self.teamList.append(result.result)
+                        
                     }
+                    
                     self.loadingState = .loaded
                 }
+                
             } catch let err {
                 print(err)
             }
