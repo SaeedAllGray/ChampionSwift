@@ -41,8 +41,7 @@ struct TeamInfoView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     Section(header: Text("Recent Matches")) {
-                        ResultCellView()
-                        ResultCellView()
+                        MatchRow(match: Match.moc())
                     }
                     
                     //                Section (header: Text("Standing")){

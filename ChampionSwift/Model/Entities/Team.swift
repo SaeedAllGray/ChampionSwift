@@ -14,11 +14,14 @@ struct Team: Codable, CustomStringConvertible, Identifiable{
     }
     
     let id: Int
+    let national: Bool?
+    let founded: Int?
+    
     let name: String
     let country: String?
-    let founded: Int?
-    let national: Bool?
+    
     let logoUrl: URL
+    let venue: Venue?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,6 +30,7 @@ struct Team: Codable, CustomStringConvertible, Identifiable{
         case founded
         case national
         case logoUrl = "logo"
+        case venue
     }
     
     init(from decoder: Decoder) throws {
@@ -38,6 +42,7 @@ struct Team: Codable, CustomStringConvertible, Identifiable{
         self.founded = try? valueContainer.decode(Int.self, forKey: .founded)
         self.national = try? valueContainer.decode(Bool.self, forKey: .national)
         self.logoUrl = try valueContainer.decode(URL.self, forKey: .logoUrl)
+        self.venue = try? valueContainer.decode(Venue.self, forKey: .venue)
     }
 
 }
