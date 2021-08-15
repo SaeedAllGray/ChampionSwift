@@ -13,69 +13,27 @@ struct TeamInfoView: View {
     
     var body: some View {
         
-            
-            VStack (alignment: .center){
-                //                VStack{
-                //                    Image.contents(of: team.logoUrl)
-                //                    Text(team.name)
-                //                        .foregroundColor(.white)
-                //                        .frame(width: geo.size.width*0.8)
-                //                        .font(.largeTitle)
-                //                        .padding()
-                //                }
-                //                .frame(maxWidth: .infinity, maxHeight: geo.size.height/3)
-                //                .background(Color(red: 14/255, green: 23/255, blue: 77/255))
-                
-                List {
-                    Section {
-                        VStack{
-                            Image.contents(of: team.logoUrl)
-                            Text(team.name)
-                                .foregroundColor(.black)
-                                .frame(width: UIScreen.main.bounds.width*0.8)
-                                .font(.largeTitle)
-                            
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height/3)
-                        
-                    }
-                    .listRowInsets(EdgeInsets())
-                    Section(header: Text("Recent Matches")) {
-                        ResultCellView()
-                        ResultCellView()
-                    }
-                    
-                    //                Section (header: Text("Standing")){
-                    
-                    //
-                    //                }
-                    //                Section (header:Text("Players")) {
-                    //                    ScrollView(.horizontal) {
-                    //                        HStack( spacing: 10) {
-                    //                            ForEach(teamPlayersModelView.playerList) { player in
-                    //                                PlayerCellView(player: player)
-                    //                            }
-                    //                        }
-                    //                        .padding()
-                    //
-                    //                    }.onAppear(perform: {
-                    //                        teamPlayersModelView.setPlayers(of: team)
-                    //                    })
-                    //
-                    //                    .padding(.zero)
-                    //                    .frame(height: 200)
-                    //                }
-                    .listRowInsets(EdgeInsets())//removes padding from the listView's section item
+        ZStack{
+            Color(.secondarySystemFill)
+            TabView {
+                StandingsView(league: League.moc())
+                VStack{
+                    PlayerListView(team: team)
                     
                 }
-                .listStyle(InsetGroupedListStyle())
-            }.navigationTitle(team.name)
-            
-            StandingsView(league: League.moc())
+                .cornerRadius(20)
+                .padding()
+                VStack{Color.blue}.padding()
+            }
+            .tabViewStyle(PageTabViewStyle())
             
         }
+
+    }
     
 }
+
+
 
 struct TeamInfoView_Previews: PreviewProvider {
     static var previews: some View {

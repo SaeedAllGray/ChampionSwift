@@ -29,5 +29,17 @@ class ChampionSwiftTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    
+    func testFixtureMoc() {
+        
+        XCTAssertNoThrow(Fixture.moc())
+    }
+    
+    
+    func testMatchMoc() {
+        XCTAssertNoThrow(Match.moc())
+    }
+
 
 }
