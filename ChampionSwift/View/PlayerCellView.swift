@@ -16,9 +16,9 @@ struct PlayerCellView: View {
                 .scaledToFit()
                 .padding(10)
                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                .cornerRadius(10)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2))
+//                .cornerRadius(10)
+//                .overlay(RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Color.blue, lineWidth: 2))
             
             Text(player.name)
                 .multilineTextAlignment(.center)

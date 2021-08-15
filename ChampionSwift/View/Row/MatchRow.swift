@@ -10,44 +10,46 @@ import SwiftUI
 struct MatchRow: View {
     var match: Match
     var body: some View {
-        VStack {
-            HStack {
-                Image.contents(of: match.homeTeam.logoUrl)
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .scaledToFit()
-                
-                HStack {
-                    Text("\(match.goals!.home)")
-                    Text("-")
-                    Text("\(match.goals!.away)")
-                    
-                  
-                      
-                    
-                }
-                
-                
-                .frame(width: 60,height: 20, alignment: .center)
-//                .background(Color.blue)
-//                .clipShape(Capsule())
-
-                
-                
+        
+        HStack {
             
+            Image.contents(of: match.homeTeam.logoUrl)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 40)
                 .padding()
                 
-                Image.contents(of: match.awayTeam.logoUrl)
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .scaledToFit()
-                //                .padding()
-                
+            
+            HStack {
+                Text("\(match.goals!.home)")
+                Text("-")
+                Text("\(match.goals!.away)")
             }
-            .frame(height: 50)
+            
+            
+            .frame(width: 60,height: 20, alignment: .center)
+            //                .background(Color.blue)
+            //                .clipShape(Capsule())
+            
+            
+            
+            
+            .padding()
+            
+            Image.contents(of: match.awayTeam.logoUrl)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 40)
+                .padding()
             
         }
+//        .frame(height: 50)
+    
+        .background(Color(.blue))
+        
+        
     }
+    
 }
 
 struct MatchRow_Previews: PreviewProvider {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30151C6026B90DA900B0C9B7 /* StandingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30151C5F26B90DA900B0C9B7 /* StandingRow.swift */; };
 		30151C6226B9111C00B0C9B7 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30151C6126B9111C00B0C9B7 /* StandingsView.swift */; };
+		3019A4E226C964A0006A4118 /* PlayerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019A4E126C964A0006A4118 /* PlayerListView.swift */; };
 		3023363426B12AB80060F87A /* ChampionSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3023363326B12AB80060F87A /* ChampionSwiftApp.swift */; };
 		3023363626B12AB80060F87A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3023363526B12AB80060F87A /* MainView.swift */; };
 		3023363826B12AB90060F87A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3023363726B12AB90060F87A /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		30151C5F26B90DA900B0C9B7 /* StandingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingRow.swift; sourceTree = "<group>"; };
 		30151C6126B9111C00B0C9B7 /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
+		3019A4E126C964A0006A4118 /* PlayerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListView.swift; sourceTree = "<group>"; };
 		3023363026B12AB80060F87A /* ChampionSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChampionSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3023363326B12AB80060F87A /* ChampionSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionSwiftApp.swift; sourceTree = "<group>"; };
 		3023363526B12AB80060F87A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -130,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3019A4DE26C9621D006A4118 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3080E2C626B2921400D36712 /* URL+Helpers.swift */,
+				3023366626B142C40060F87A /* Image+Helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3023362726B12AB70060F87A = {
 			isa = PBXGroup;
 			children = (
@@ -228,12 +239,11 @@
 		6D1176F226B12F5D005181B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3019A4DE26C9621D006A4118 /* Helpers */,
 				30CB344026C507EB007FF5F6 /* Entities */,
 				30260DAA26C10B2A0067C753 /* States */,
-				3023366626B142C40060F87A /* Image+Helper.swift */,
 				3080E2C226B2913900D36712 /* Response.swift */,
 				3080E2C426B2917800D36712 /* Result.swift */,
-				3080E2C626B2921400D36712 /* URL+Helpers.swift */,
 				305535D326B939CF00811537 /* Request.swift */,
 			);
 			path = Model;
@@ -248,6 +258,7 @@
 				3084BF8726B7B7D200C8F5C3 /* LeagueCell.swift */,
 				30151C6126B9111C00B0C9B7 /* StandingsView.swift */,
 				3062FC5B26BA66C00072F9DD /* TeamInfoView.swift */,
+				3019A4E126C964A0006A4118 /* PlayerListView.swift */,
 				3062FC5D26BA66EE0072F9DD /* PlayerCellView.swift */,
 				3062FC5F26BA67220072F9DD /* ResultCellView.swift */,
 			);
@@ -413,6 +424,7 @@
 				6D1176F626B131BC005181B8 /* SearchView.swift in Sources */,
 				3080E2C526B2917800D36712 /* Result.swift in Sources */,
 				3023366126B1379E0060F87A /* Team.swift in Sources */,
+				3019A4E226C964A0006A4118 /* PlayerListView.swift in Sources */,
 				305535CA26B91C1900811537 /* Player.swift in Sources */,
 				3062FC5E26BA66EE0072F9DD /* PlayerCellView.swift in Sources */,
 				305535D226B934DD00811537 /* TeamPlayersModeView.swift in Sources */,
@@ -583,6 +595,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ChampionSwift/Preview Content\"";
+				DEVELOPMENT_TEAM = UBBFWRZ6H7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ChampionSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -604,6 +617,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ChampionSwift/Preview Content\"";
+				DEVELOPMENT_TEAM = UBBFWRZ6H7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ChampionSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
