@@ -30,9 +30,17 @@ class ChampionSwiftTests: XCTestCase {
         }
     }
     
+    func testLeagueMoc() {
+        XCTAssertNoThrow(League.moc())
+    }
+    
+    func testStandingMoc() {
+        XCTAssertNoThrow(Standing.moc())
+    }
     
     func testFixtureMoc() {
-        
+        print(Fixture.moc().date)
+        print(Fixture.moc().timestamp)
         XCTAssertNoThrow(Fixture.moc())
     }
     
@@ -40,6 +48,17 @@ class ChampionSwiftTests: XCTestCase {
     func testMatchMoc() {
         XCTAssertNoThrow(Match.moc())
     }
-
+    func testNextAndPreviousMonth() {
+        let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let newDate = dateFormatter.date(from: "\(nextMonth!)")
+        print(newDate!)
+    
+    }
 
 }

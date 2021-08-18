@@ -7,10 +7,12 @@
 import SwiftUI
 
 struct TeamInfoView: View {
-    @ObservedObject var teamPlayersModelView = TeamPlayersModelView()
+    
+    
     
     var team: Team
     
+   
     var body: some View {
         
         ZStack{
@@ -23,6 +25,9 @@ struct TeamInfoView: View {
                 }
                 .cornerRadius(20)
                 .padding()
+              
+                
+                
                 VStack{Color.blue}.padding()
             }
             .tabViewStyle(PageTabViewStyle())

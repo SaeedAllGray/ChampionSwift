@@ -58,7 +58,7 @@ struct SearchView: View {
                         List(teamListModelView.teamList, id: \.id) { team in
                             
                             NavigationLink(destination: TeamInfoView(team: team)){
-                                TeamCell(team: team)
+                                TeamRow(team: team)
                             }
                                     
                                

@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct TeamCell: View {
-    @EnvironmentObject var favoriteTeams: FavoriteTeams
+struct TeamRow: View {
+//    @EnvironmentObject var favoriteTeams: FavoriteTeams
     
     var team: Team
    
@@ -26,21 +26,21 @@ struct TeamCell: View {
                 Text(team.country ?? "N/A")
             }
             Spacer()
-            Button(action: {
-                if favoriteTeams.contains(team) {
-                    favoriteTeams.remove(team)
-                } else {
-                    favoriteTeams.add(team)
-                }
-            }, label: {
-                Image(systemName: favoriteTeams.contains(team) ? "star.fill" : "star")
-            }).buttonStyle(BorderlessButtonStyle())
+//            Button(action: {
+//                if favoriteTeams.contains(team) {
+//                    favoriteTeams.remove(team)
+//                } else {
+//                    favoriteTeams.add(team)
+//                }
+//            }, label: {
+//                Image(systemName: favoriteTeams.contains(team) ? "star.fill" : "star")
+//            }).buttonStyle(BorderlessButtonStyle())
         }
     }
 }
 
-struct TeamCell_Previews: PreviewProvider {
+struct TeamRow_Previews: PreviewProvider {
     static var previews: some View {
-        TeamCell(team: Team.moc())
+        TeamRow(team: Team.moc())
     }
 }

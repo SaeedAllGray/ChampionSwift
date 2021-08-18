@@ -12,8 +12,8 @@ struct Fixture: Identifiable, Codable {
     var referee: String?
     
     
-//    var date: Date
-//    var timestamp: Date
+    var date: Date
+    var timestamp: Date
 //    var timezone: TimeZone
     
     var venue: Venue?
@@ -24,11 +24,29 @@ struct Fixture: Identifiable, Codable {
         case id
         case referee
         
-//        case date
-//        case timestamp
+        case date
+        case timestamp
 //        case timezone
         case venue
         
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try valueContainer.decode(Int.self, forKey: .id)
+        referee = try? valueContainer.decode(String.self, forKey: .referee)
+        venue = try? valueContainer.decode(Venue.self, forKey: .venue)
+        
+        let dateFormatter = ISO8601DateFormatter()
+        let dateString = try valueContainer.decode(String.self, forKey: .date)
+        date = dateFormatter.date(from: dateString)!
+        let timestamps = try valueContainer.decode(TimeInterval.self, forKey: .timestamp)
+        let myTimeInterval = TimeInterval(timestamps)
+        timestamp = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval)) as Date
+        
+         
         
     }
    
@@ -54,7 +72,7 @@ extension Fixture {
         "status": {
             "long": "Match Finished",
             "short": "FT",
-            "": 90
+            "elapsed": 90
         }
     }
     """
