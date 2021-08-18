@@ -20,7 +20,7 @@ struct Result<Type: Codable>: Codable {
         
         case result
     }
-    
+     
    
     init(from decoder: Decoder) throws {
         

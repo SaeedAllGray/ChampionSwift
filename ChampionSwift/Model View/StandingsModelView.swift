@@ -34,11 +34,12 @@ final class StandingsModelView: ObservableObject {
                     
 //                    let leagueStandings = stanfInfo.response[0].result.standings ?? [[]]
                     self.standings = stanfInfo.response[0].result.standings ?? [[Standing]]()
+                    print(self.standings)
 //                    print(leagueStandings)
 //                    for standings in leagueStandings {
 //                        self.standings.append(standings)
 //
-////                        print(standing)
+//                    print(standing)
 //                    }
                 
                     self.loadingState = .loaded

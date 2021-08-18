@@ -12,7 +12,7 @@ struct MatchRow: View {
     var body: some View {
         
         HStack {
-            
+           
             Image.contents(of: match.homeTeam.logoUrl)
                 .resizable()
                 .scaledToFit()
@@ -42,10 +42,10 @@ struct MatchRow: View {
                 .frame(height: 40)
                 .padding()
             
-        }
+        }.background(Color.blue)
 //        .frame(height: 50)
     
-        .background(Color(.blue))
+//        .background(Color(.blue))
         
         
     }

@@ -16,6 +16,11 @@ struct PlayerListView: View {
         GridItem(.adaptive(minimum: 80))
     ]
     
+    init(team: Team) {
+        self.team = team
+        teamPlayersViewModel.setPlayers(of: team)
+    }
+    
     var body: some View {
         
         ScrollView {
@@ -34,9 +39,9 @@ struct PlayerListView: View {
             }
         }
         
-        .onAppear(perform: {
-            teamPlayersViewModel.setPlayers(of: team)
-        })
+//        .onAppear(perform: {
+//            teamPlayersViewModel.setPlayers(of: team)
+//        })
         
     }
 }
